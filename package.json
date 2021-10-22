@@ -1,0 +1,16 @@
+{
+  "name": "experiments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "filterNon0DTEDays.js",
+  "type": "module",
+  "scripts": {
+    "start": "node filterNon0DTEDays.mjs",
+    "backtest": "node winRateBackTest.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^5.5.3"
+  }
+}
