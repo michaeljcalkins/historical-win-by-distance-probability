@@ -13,6 +13,7 @@ I want to find out if there is an optimal way to trade SPX 0DTE credit spreads p
 
 ## Background Information
 
+1. Commision fees are not taken into consideration, nor are taxes.
 1. Credit spreads are a great way to mitigate risk due to their ranged behavior without needed to be directionally correct and are inexpensive to sell.
 1. The strategy focused on is 0DTE SPX opening at open and expiring worthless at close.
 1. SPX has tax advantage and is cash settled allowing us to only open our trades while allowing them to close without triggering day trades.
@@ -157,5 +158,6 @@ Loss per losing trade: 100%
 
 ## Unanswered Questions
 
-1. What do winning streaks look like?
+1. How do winning streaks effect this trend?
 1. How does one recover from big draw downs?
+1. I'd like to see all these different scenarios charted out as graphs.
