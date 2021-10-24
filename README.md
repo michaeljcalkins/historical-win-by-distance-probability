@@ -35,6 +35,7 @@ I think selling far OTM put credit spreads is the ideal distance for long term s
 
 ## Observances
 
+1. I am assuming you will do the exact same trade for 10 years straight. This does not account for a trader moving around all the time.
 1. Losses are not actual risk management. They are just a percentage off of the max loss.
 1. The profit success varies wildly depeneding on your ability to close losing trades ASAP.
 1. Far OTM is not the most profitable.
