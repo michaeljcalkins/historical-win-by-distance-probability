@@ -19,6 +19,8 @@ I want to find out if there is an optimal way to trade SPX 0DTE credit spreads p
 1. SPX has tax advantage and is cash settled allowing us to only open our trades while allowing them to close without triggering day trades.
 1. We are not trying to time the market, this experiment assumes you are trading every day available.
 1. If we had option chain data I'd be able to provide highly accurate test results, but I wanted this to be free.
+1. I am assuming you will do the exact same trade for 10 years straight. This does not account for a trader moving around all the time.
+1. Losses are not actual risk management. They are just a percentage off of the max loss.
 
 ## Hypothesis
 
@@ -35,8 +37,6 @@ I think selling far OTM put credit spreads is the ideal distance for long term s
 
 ## Observances
 
-1. I am assuming you will do the exact same trade for 10 years straight. This does not account for a trader moving around all the time.
-1. Losses are not actual risk management. They are just a percentage off of the max loss.
 1. The profit success varies wildly depeneding on your ability to close losing trades ASAP.
 1. Far OTM is not the most profitable.
 1. -25 is necessary to outlast max loss if you never managed a losing trade but you also miss out on so much money.
