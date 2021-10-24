@@ -7,13 +7,35 @@
 1. `npm backtestCLI` for cli to test distances and premiums
 1. `npm backtestAllScenarios` to run the present distances and static premiums against the provided data.
 
-## Data
+## Objective
 
-10 year download from NASDAQ
+I want to find out if there is an optimal way to trade 0DTE credit spreads profitably for the long term.
 
-https://www.nasdaq.com/market-activity/index/spx/historical
+## Background Information
 
-## Results
+1. Credit spreads are a great way to mitigate risk due to their ranged behavior without needed to be directionally correct and are inexpensive to sell.
+1. The strategy focused on is 0DTE SPX opening at open and expiring worthless at close.
+1. SPX has tax advantage and is cash settled allowing us to only open our trades while allowing them to close without triggering day trades.
+1. We are not trying to time the market, this experiment assumes you are trading every day available.
+1. If we had option chain data I'd be able to provide highly accurate test results, but I wanted this to be free.
+
+## Hypothesis
+
+I think selling far OTM put credit spreads is the ideal distance for long term success that lets you win the most times passively and allowing your position to go expiration.
+
+## Material/Procedures
+
+1. 10 year download from NASDAQ: https://www.nasdaq.com/market-activity/index/spx/historical
+1. The main script is `winRateBackTestAllScenarios.mjs`
+1. Run the main experiment with `npm run backtestAllScenarios`
+1. Options data was from a 2DTE date because I wrote this on the weekend and all I really needed was option premium ratios at different strike prices.  I'll probably update this on monday with new data but the results should be almost identical.
+
+## Observances
+
+1. The profit success varies wildly depeneding on your ability to close losing trades ASAP.
+1. 
+
+## Conclusions
 
 ```
 Loss per losing trade: 25%
