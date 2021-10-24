@@ -1,6 +1,6 @@
 /**
- * Automatically runs various spread distances with 
- * manually pulled premium data that is statically 
+ * Automatically runs various spread distances with
+ * manually pulled premium data that is statically
  * used against whatever data is provided.
  */
 import parse from "csv-parse/lib/sync.js";
@@ -125,6 +125,8 @@ const records = parse(data, {
 });
 
 // Keep only 0DTE dates which are Mon, Wed, and Fri
+// .reverse() = starts at 2011 and goes forwards
+// without reverse = starts at 2021 and goes backwards
 const expirationRecords = records
   .reverse()
   .map((record) => {

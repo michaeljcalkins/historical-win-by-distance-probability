@@ -28,14 +28,21 @@ I think selling far OTM put credit spreads is the ideal distance for long term s
 1. 10 year download from NASDAQ: https://www.nasdaq.com/market-activity/index/spx/historical
 1. The main script is `winRateBackTestAllScenarios.mjs`
 1. Run the main experiment with `npm run backtestAllScenarios`
-1. Options data was from a 2DTE date because I wrote this on the weekend and all I really needed was option premium ratios at different strike prices.  I'll probably update this on monday with new data but the results should be almost identical.
+1. Options data was from a 2DTE date because I wrote this on the weekend and all I really needed was option premium ratios at different strike prices. I'll probably update this on monday with new data but the results should be almost identical.
+1. $5 spreads
+1. Visualizer https://www.tradingview.com/chart/hb0iTLjt/
 
 ## Observances
 
 1. The profit success varies wildly depeneding on your ability to close losing trades ASAP.
-1. 
+1. Far OTM is not the most profitable.
+1. -25 is necessary to outlast max loss if you never managed a losing trade but you also miss out on so much money.
+1. You are more profitable the faster you can manage your losing trades.
+1. ATM isn't the most profitable when using put spreads because you can lose your account.
+1. Call spreads appear to be more profitable.
+1. If you reverse the data so it runs 2021 -> 2011 you still get similar results, risk managment is still king and put spreads beat call spreads.
 
-## Conclusions
+**Data results**
 
 ```
 Loss per losing trade: 25%
@@ -139,3 +146,16 @@ Loss per losing trade: 100%
 │   19    │   -50    │   480   │    20     │   1023   │    17     │  13800  │                │
 └─────────┴──────────┴─────────┴───────────┴──────────┴───────────┴─────────┴────────────────┘
 ```
+
+## Conclusions
+
+1. Closing losing trades fast and allow winning trades to finish are easily the most profitable.
+1. The most profitable trades are credit call spreads from 10 and 15 OTM.
+1. Far OTM does not make nearly as much profit as closer strike distances.
+1. With no riskmanagement, call credit spreads are actually very successful.
+1. You make 25 - 35% more profit with bad risk management and almost 80% more profit with good risk management.
+
+## Unanswered Questions
+
+1. What do winning streaks look like?
+1. How does one recover from big draw downs?
