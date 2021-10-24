@@ -35,6 +35,7 @@ I think selling far OTM put credit spreads is the ideal distance for long term s
 
 ## Observances
 
+1. Losses are not actual risk management. They are just a percentage off of the max loss.
 1. The profit success varies wildly depeneding on your ability to close losing trades ASAP.
 1. Far OTM is not the most profitable.
 1. -25 is necessary to outlast max loss if you never managed a losing trade but you also miss out on so much money.
@@ -161,3 +162,4 @@ Loss per losing trade: 100%
 1. How do winning streaks effect this trend?
 1. How does one recover from big draw downs?
 1. I'd like to see all these different scenarios charted out as graphs.
+1. What if you could close a losing spread and open one on the other side?
