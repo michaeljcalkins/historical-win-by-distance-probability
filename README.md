@@ -9,7 +9,7 @@
 
 ## Objective
 
-I want to find out if there is an optimal way to trade 0DTE credit spreads profitably for the long term.
+I want to find out if there is an optimal way to trade SPX 0DTE credit spreads profitably for the long term.
 
 ## Background Information
 
