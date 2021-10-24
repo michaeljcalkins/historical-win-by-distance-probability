@@ -1,0 +1,122 @@
+// Credit Spread Day Success Heatmap
+//
+// Use this to visualize and study past data where a call 
+// or put spread might have been successful had you 
+// held it from open to close.
+//
+// i.e. Most of SPX's movement over the last 10 years 
+// is within $50 up or down from the opening price.
+
+//@version=5
+indicator('Credit Spread Day Success Heatmap', overlay=true)
+
+isMon() =>
+    dayofweek(time('D')) == dayofweek.monday and close ? 1 : 0
+isTue() =>
+    dayofweek(time('D')) == dayofweek.tuesday and close ? 1 : 0
+isWed() =>
+    dayofweek(time('D')) == dayofweek.wednesday and close ? 1 : 0
+isThu() =>
+    dayofweek(time('D')) == dayofweek.thursday and close ? 1 : 0
+isFri() =>
+    dayofweek(time('D')) == dayofweek.friday and close ? 1 : 0
+isSat() =>
+    dayofweek(time('D')) == dayofweek.saturday and close ? 1 : 0
+isSun() =>
+    dayofweek(time('D')) == dayofweek.sunday and close ? 1 : 0
+
+Bottom = input.session(title='Time Range', defval='0930-1600')
+dayrange1 = input(title='Price Movement 1', defval=60)
+dayrange2 = input(title='Price Movement 2', defval=50)
+dayrange3 = input(title='Price Movement 3', defval=40)
+dayrange4 = input(title='Price Movement 4', defval=30)
+dayrange5 = input(title='Price Movement 5', defval=20)
+
+BarInSession(sess) =>
+    time(timeframe.period, sess) != 0
+
+[dayOpen, dayClose] = request.security(syminfo.ticker, 'D', [open, close], lookahead=barmerge.lookahead_on)
+
+upperBound1 = close + dayrange1
+lowerBound1 = close - dayrange1
+
+valueH2 = close + dayrange2
+valueL2 = close - dayrange2
+
+valueH3 = close + dayrange3
+valueL3 = close - dayrange3
+
+valueH4 = close + dayrange4
+valueL4 = close - dayrange4
+
+valueH5 = close + dayrange5
+valueL5 = close - dayrange5
+
+openCloseDiff = dayOpen - dayClose
+
+plotchar(dayOpen, 'Day Open', '', location=location.top)
+plotchar(dayClose, 'Day Close', '', location=location.top)
+plotchar(openCloseDiff, 'Open Close Diff', '', location=location.top)
+plotchar(upperBound1, 'Upper Bound 1', '', location=location.top)
+plotchar(lowerBound1, 'Lower Bound 1', '', location=location.top)
+
+plotchar(dayClose, 'Day Close', '', location=location.top)
+plotchar(valueL5, 'Value L5', '', location=location.top)
+
+//
+// Call Credit Spreads
+//
+
+color5T = valueH5 > dayClose ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL5T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueH5 : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL5T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL5T, TopL5T, color5T, title='Fill Box')
+
+color4T = valueH4 > dayClose  ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL4T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueH4 : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL4T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL4T, TopL4T, color4T, title='Fill Box')
+
+color3T = valueH3 > dayClose  ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL3T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueH3 : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL3T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL3T, TopL3T, color3T, title='Fill Box')
+
+color2T = valueH2 > dayClose  ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL2T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueH2 : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL2T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL2T, TopL2T, color2T, title='Fill Box')
+
+color1T = upperBound1 > dayClose ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL1T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? upperBound1 : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL1T = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL1T, TopL1T, color1T, title='Fill Box')
+
+//
+// Put Credit Spreads
+//
+
+color5 = valueL5 < dayClose ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL5 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL5 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueL5 : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL5, TopL5, color5, title='Fill Box')
+
+color4 = valueL4 < dayClose  ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL4 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL4 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueL4 : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL4, TopL4, color4, title='Fill Box')
+
+color3 =  valueL3 < dayClose ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL3 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL3 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueL3 : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL3, TopL3, color3, title='Fill Box')
+
+color2 = valueL2 < dayClose ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL2 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL2 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? valueL2 : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL2, TopL2, color2, title='Fill Box')
+
+color1 = lowerBound1 < dayClose ? color.new(color.green, 90) : color.new(color.red, 0)
+BottomL1 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? close : na, title='Bottom High', style=plot.style_linebr, linewidth=3, color=na)
+TopL1 = plot(BarInSession(Bottom) and (isWed() or isMon() or isFri()) ? lowerBound1 : na, title='Bottom Low', style=plot.style_linebr, linewidth=3, color=na)
+fill(BottomL1, TopL1, color1, title='Fill Box')
