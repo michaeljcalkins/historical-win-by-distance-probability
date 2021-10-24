@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node filterNon0DTEDays.mjs",
-    "backtest": "node winRateBackTest.mjs"
+    "backtestCLI": "node winRateBackTest.mjs",
+    "backtestAllScenarios": "node winRateBackTestAllScenarios.mjs"
   },
   "author": "",
   "license": "ISC",

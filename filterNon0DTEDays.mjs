@@ -1,6 +1,5 @@
 import parse from "csv-parse/lib/sync.js";
 import fs from "fs";
-import readline from "readline";
 
 function round5(x) {
   return Math.ceil(x / 5) * 5;

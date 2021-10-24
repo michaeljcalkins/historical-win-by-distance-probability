@@ -1,3 +1,8 @@
+/**
+ * Lets you run a single spread distance
+ * against historical data with custom
+ * premium and risk management values.
+ */
 import parse from "csv-parse/lib/sync.js";
 import fs from "fs";
 import readline from "readline";
