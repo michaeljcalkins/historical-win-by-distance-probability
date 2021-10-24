@@ -158,6 +158,8 @@ Loss per losing trade: 100%
 1. With no riskmanagement, call credit spreads are actually very successful.
 1. You make 25 - 35% more profit with bad risk management and almost 80% more profit with good risk management.
 
+Consistency and risk management can make you very successful.
+
 ## Unanswered Questions
 
 1. How do winning streaks effect this trend?
